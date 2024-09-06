@@ -1,3 +1,4 @@
+##US Non-farm Payroll
 setwd("/Users/takayukitamura/Documents/R_Computing/us_employment")
 library(tidyverse)
 library(ggtext)
@@ -13,9 +14,9 @@ nfp_data <- read.csv("https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%2
 
 # updates <- tribble(
 #   ~date, ~nfp,
-#   "2024-07-01", 158752
+#   "2024-08-01", 158865
 # )
-# 
+
 # nfp_data <- rbind(nfp_data, updates)
 
 head(nfp_data)
@@ -69,11 +70,11 @@ nfp_data %>%
        y = "Monthly Change in NFP(x1,000)",
        caption = "FRED(Federal Reserve Economic Data)") +
   scale_fill_manual(breaks = c(F,T),
-                     values = c("#AAAAAA", "#0000FF")) +
+                    values = c("#AAAAAA", "#0000FF")) +
   theme(
     plot.title.position = "plot",
     plot.title = element_textbox_simple())
-  
+
 ## add the latest label 
 
 nfp_data %>%  
@@ -98,7 +99,7 @@ nfp_data %>%
     # plot.caption = element_textbox_simple())
     plot.caption = element_markdown())
 
-ggsave("monthly_nfp.png", width = 6, height = 5)
+ggsave("figures/monthly_nfp.png", width = 6, height = 5)
 
 ## Just NFP data
 nfp_data %>% 
@@ -114,8 +115,6 @@ nfp_data %>%
   labs(title = "US Non-Farm Payrolls",
        y = "NFP (x 1,000)",
        x = NULL) 
-ggsave("us_nfp.png",height = 4, width = 6 )
-
-
+ggsave("figures/us_nfp.png",height = 4, width = 6 )
 
 
